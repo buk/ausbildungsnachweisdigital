@@ -21,6 +21,11 @@ defmodule Ausbildungsnachweisdigital.Reports do
     Repo.all(Report)
   end
 
+  def list_reports_by_apprentice_id(apprentice_id) do
+    query = from(r in Report, where: r.apprentice_id == ^apprentice_id)
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single report.
 

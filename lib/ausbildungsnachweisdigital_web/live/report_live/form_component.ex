@@ -69,6 +69,9 @@ defmodule AusbildungsnachweisdigitalWeb.ReportLive.FormComponent do
   end
 
   defp save_report(socket, :new, report_params) do
+    apprentice_id = socket.assigns.current_user.id
+    report_params = Map.put(report_params, "apprentice_id", apprentice_id)
+
     case Reports.create_report(report_params) do
       {:ok, report} ->
         notify_parent({:saved, report})

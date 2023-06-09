@@ -15,7 +15,7 @@ defmodule Ausbildungsnachweisdigital.Reports.Report do
   @doc false
   def changeset(report, attrs) do
     report
-    |> cast(attrs, [:activity, :duration])
+    |> cast(attrs, [:activity, :duration, :apprentice_id])
     |> validate_required([:activity, :duration])
   end
 end

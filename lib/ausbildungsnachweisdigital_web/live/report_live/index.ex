@@ -4,9 +4,12 @@ defmodule AusbildungsnachweisdigitalWeb.ReportLive.Index do
   alias Ausbildungsnachweisdigital.Reports
   alias Ausbildungsnachweisdigital.Reports.Report
 
+  on_mount({AusbildungsnachweisdigitalWeb.UserAuth, :mount_current_user})
+
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :reports, Reports.list_reports())}
+    apprentice_id = socket.assigns.current_user.id
+    {:ok, stream(socket, :reports, Reports.list_reports_by_apprentice_id(apprentice_id))}
   end
 
   @impl true
@@ -33,7 +36,10 @@ defmodule AusbildungsnachweisdigitalWeb.ReportLive.Index do
   end
 
   @impl true
-  def handle_info({AusbildungsnachweisdigitalWeb.ReportLive.FormComponent, {:saved, report}}, socket) do
+  def handle_info(
+        {AusbildungsnachweisdigitalWeb.ReportLive.FormComponent, {:saved, report}},
+        socket
+      ) do
     {:noreply, stream_insert(socket, :reports, report)}
   end
 
