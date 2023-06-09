@@ -19,7 +19,7 @@ defmodule AusbildungsnachweisdigitalWeb.ReportLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:activity]} type="text" label="Activity" />
+        <.input field={@form[:activity]} type="textarea" rows="10" label="Activity" />
         <.input field={@form[:duration]} type="number" label="Duration" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Report</.button>
