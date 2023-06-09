@@ -68,6 +68,13 @@ defmodule AusbildungsnachweisdigitalWeb.Router do
       on_mount: [{AusbildungsnachweisdigitalWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+
+      live "/reports", ReportLive.Index, :index
+      live "/reports/new", ReportLive.Index, :new
+      live "/reports/:id/edit", ReportLive.Index, :edit
+
+      live "/reports/:id", ReportLive.Show, :show
+      live "/reports/:id/show/edit", ReportLive.Show, :edit
     end
   end
 
