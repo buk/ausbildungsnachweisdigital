@@ -75,6 +75,13 @@ defmodule AusbildungsnachweisdigitalWeb.Router do
 
       live("/reports/:id", ReportLive.Show, :show)
       live("/reports/:id/show/edit", ReportLive.Show, :edit)
+
+      live "/goals", GoalLive.Index, :index
+      live "/goals/new", GoalLive.Index, :new
+      live "/goals/:id/edit", GoalLive.Index, :edit
+
+      live "/goals/:id", GoalLive.Show, :show
+      live "/goals/:id/show/edit", GoalLive.Show, :edit
     end
   end
 
