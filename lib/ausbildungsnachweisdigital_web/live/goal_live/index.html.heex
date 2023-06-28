@@ -1,8 +1,10 @@
 <.header>
-  Listing Goals
+<div class="min-w-0 flex-1">
+  <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight mt-11">Übersicht deiner Ziele</h2>
+</div>
   <:actions>
     <.link patch={~p"/goals/new"}>
-      <.button>New Goal</.button>
+      <.button class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 mt-8">Neuer Eintrag</.button>
     </.link>
   </:actions>
 </.header>
@@ -13,14 +15,14 @@
   row_click={fn {_id, goal} -> JS.navigate(~p"/goals/#{goal}") end}
 >
   <:col :let={{_id, goal}} label="Title"><%= goal.title %></:col>
-  <:col :let={{_id, goal}} label="Content"><%= goal.content %></:col>
+  <:col :let={{_id, goal}} label="Inhalt"><%= goal.content %></:col>
   <:col :let={{_id, goal}} label="Deadline"><%= goal.deadline %></:col>
-  <:col :let={{_id, goal}} label="Completed"><%= goal.completed %></:col>
+  <:col :let={{_id, goal}} label="Abgeschlossen"><%= goal.completed %></:col>
   <:action :let={{_id, goal}}>
     <div class="sr-only">
-      <.link navigate={~p"/goals/#{goal}"}>Show</.link>
+      <.link navigate={~p"/goals/#{goal}"}>Anzeigen</.link>
     </div>
-    <.link patch={~p"/goals/#{goal}/edit"}>Edit</.link>
+    <.link patch={~p"/goals/#{goal}/edit"}>Editieren</.link>
   </:action>
   <:action :let={{id, goal}}>
     <.link
