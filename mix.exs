@@ -50,6 +50,7 @@ defmodule Ausbildungsnachweisdigital.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
+      {:pdf, "~> 0.6.1"},
       {:plug_cowboy, "~> 2.5"}
     ]
   end
