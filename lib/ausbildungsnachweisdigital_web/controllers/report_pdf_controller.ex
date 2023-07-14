@@ -1,4 +1,4 @@
-defmodule AusbildungsnachweisdigitalWeb.ReportController do
+defmodule AusbildungsnachweisdigitalWeb.ReportPdfController do
   use AusbildungsnachweisdigitalWeb, :controller
 
   alias Ausbildungsnachweisdigital.ReportPdfCreator
