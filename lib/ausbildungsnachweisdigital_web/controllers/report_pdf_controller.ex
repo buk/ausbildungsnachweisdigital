@@ -7,7 +7,7 @@ defmodule AusbildungsnachweisdigitalWeb.ReportPdfController do
   def download(conn, params) do
     report = Reports.get_report!(params["id"])
     pdf = ReportPdfCreator.to_pdf(report)
-    filename = "report.pdf"
+    filename = report.id
 
     conn
     |> put_resp_content_type("application/pdf")
