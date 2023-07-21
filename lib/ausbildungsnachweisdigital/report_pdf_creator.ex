@@ -1,4 +1,10 @@
 defmodule Ausbildungsnachweisdigital.ReportPdfCreator do
+  
+  # Not really easy to create a table with this Package,
+  # will try to use chromic again
+  # See this for further informations
+  # https://chat.openai.com/share/63622d5d-4a49-474f-b5b3-287163a46f9b
+  
   def to_pdf(report) do
     Pdf.build([size: :a4], fn pdf ->
       pdf
