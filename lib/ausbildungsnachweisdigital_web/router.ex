@@ -64,6 +64,8 @@ defmodule AusbildungsnachweisdigitalWeb.Router do
   scope "/", AusbildungsnachweisdigitalWeb do
     pipe_through([:browser, :require_authenticated_user])
 
+    get "/reports/:id/download", ReportPdfController, :download
+
     live_session :require_authenticated_user,
       on_mount: [{AusbildungsnachweisdigitalWeb.UserAuth, :ensure_authenticated}] do
       live("/users/settings", UserSettingsLive, :edit)
