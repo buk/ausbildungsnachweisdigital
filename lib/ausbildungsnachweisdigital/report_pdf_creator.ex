@@ -1,19 +1,19 @@
-template = """
-= Ausbildungsnachweise
-
-Ausbildungsnachweise von Sebastian Bachmann.
-
-#table(
-  columns: (auto, 1fr, auto),
-  [*No*], [*Aktivität*], [*Dauer in Std.*],
-  <%= reports %>
-)
-"""
+# template = """
+# = Ausbildungsnachweise
+# 
+# Ausbildungsnachweise von Sebastian Bachmann.
+# 
+# #table(
+#   columns: (auto, 1fr, auto),
+#   [*No*], [*Aktivität*], [*Dauer in Std.*],
+#   <%= reports %>
+# )
+# """
 
 defmodule Ausbildungsnachweisdigital.ReportPdfCreator do
   def to_pdf(report) do
     {:ok, pdf_binary} =
-      ExTypst.render_to_pdf(template,
+      ExTypst.render_to_pdf("template",
         reports: ExTypst.Format.table_content(to_pdf(report))
       )
 
