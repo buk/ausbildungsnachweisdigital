@@ -5,6 +5,7 @@
     <.link patch={~p"/reports/#{@report}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit report</.button>
     </.link>
+    <a href={~p"/reports/#{@report}/download"} }>Download</a>
   </:actions>
 </.header>
 
@@ -15,7 +16,12 @@
 
 <.back navigate={~p"/reports"}>Back to reports</.back>
 
-<.modal :if={@live_action == :edit} id="report-modal" show on_cancel={JS.patch(~p"/reports/#{@report}")}>
+<.modal
+  :if={@live_action == :edit}
+  id="report-modal"
+  show
+  on_cancel={JS.patch(~p"/reports/#{@report}")}
+>
   <.live_component
     module={AusbildungsnachweisdigitalWeb.ReportLive.FormComponent}
     id={@report.id}

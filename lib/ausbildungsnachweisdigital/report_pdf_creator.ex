@@ -11,23 +11,13 @@ Ausbildungsnachweise von Sebastian Bachmann.
 """
 
 defmodule Ausbildungsnachweisdigital.ReportPdfCreator do
+  def to_pdf(report) do
+    {:ok, pdf_binary} =
+      ExTypst.render_to_pdf(template,
+        reports: ExTypst.Format.table_content(to_pdf(report))
+      )
 
-
-  @activities ["Lorem Ipsum", "Lorem Ipsum Lorem Ipsum", "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum", "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum", "Lorem Ipsum Lorem Ipsum Lorem Ipsum"]
-  @durations [4, 2, 5, 2,8, 9]
-
-  def build_reports(n) do 
-    for n <- 1..n do 
-      activities = "#{Enum.random(@activities)}"
-      durations = "#{Enum.random(@durations)}"
-      [n, activities, durations]
-    end
+    File.write!("reports.pdf", pdf_binary)
+    IO.puts("Successfully written reports.pdf file")
   end
 end
-
-{:ok, pdf_binary} = ExTypst.render_to_pdf(template, 
-  reports: ExTypst.Format.table_content(Ausbildungsnachweisdigital.ReportPdfCreator.build_reports(10))
-)
-
-File.write!("reports.pdf", pdf_binary)
-IO.puts("Successfully written reports.pdf file")
