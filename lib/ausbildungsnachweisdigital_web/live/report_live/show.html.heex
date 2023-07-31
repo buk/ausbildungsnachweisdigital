@@ -5,7 +5,10 @@
     <.link patch={~p"/reports/#{@report}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit report</.button>
     </.link>
-    <a href={~p"/reports/#{@report}/download"} }>Download</a>
+    <.link patch={~p"/reports/#{@report}/download"} phx-click={JS.push_focus()}>
+      <.button>Download report</.button>
+    </.link>
+    <button phx-click="generate_pdf">Generate PDF</button>
   </:actions>
 </.header>
 

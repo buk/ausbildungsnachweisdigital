@@ -16,6 +16,11 @@ defmodule AusbildungsnachweisdigitalWeb.ReportLive.Show do
      |> assign(:report, Reports.get_report!(id))}
   end
 
+  @impl true
+  def handle_event("generate_pdf", _, socket) do
+    {:noreply, socket}
+  end
+
   defp page_title(:show), do: "Show Report"
   defp page_title(:edit), do: "Edit Report"
 end

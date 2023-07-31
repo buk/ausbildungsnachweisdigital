@@ -8,6 +8,36 @@ defmodule Ausbildungsnachweisdigital.Reports do
 
   alias Ausbildungsnachweisdigital.Reports.Report
 
+  defp reports_to_typst_table(reports) do
+    reports
+    |> Enum.with_index(1)
+    |> Enum.map(fn {%Report{} = r, row_number} ->
+      [row_number, r.activity, r.duration]
+    end)
+  end
+
+  def reports_to_pdf(path) do
+    template = """
+    = Ausbildungsnachweise
+
+    #table(
+      columns: (auto, 1fr, auto),
+      [*No*], [*Tätigkeiten*], [*Ca. dauer in Stunden*],
+      <%= reports %>
+    )
+    """
+
+    reports = list_reports()
+    table_content = reports_to_typst_table(reports)
+
+    {:ok, pdf_binary} =
+      ExTypst.render_to_pdf(template,
+        reports: ExTypst.Format.table_content(table_content)
+      )
+
+    File.write(path, pdf_binary)
+  end
+
   @doc """
   Returns the list of reports.
 
