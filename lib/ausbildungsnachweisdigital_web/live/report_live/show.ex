@@ -18,6 +18,8 @@ defmodule AusbildungsnachweisdigitalWeb.ReportLive.Show do
 
   @impl true
   def handle_event("generate_pdf", _, socket) do
+    # da die PDF Datei sowieso über HTTP geschickt werden muss,
+    # ist die Variante direkt einen Link auf den ReportPdfontroller zu setzen hier sinnvoller
     {:noreply, socket}
   end
 

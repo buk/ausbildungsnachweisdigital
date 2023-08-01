@@ -16,7 +16,8 @@ defmodule Ausbildungsnachweisdigital.Reports do
     end)
   end
 
-  def reports_to_pdf(path) do
+  @spec reports_to_pdf :: {:ok, binary} | {:error, any}
+  def reports_to_pdf do
     template = """
     = Ausbildungsnachweise
 
@@ -30,12 +31,24 @@ defmodule Ausbildungsnachweisdigital.Reports do
     reports = list_reports()
     table_content = reports_to_typst_table(reports)
 
-    {:ok, pdf_binary} =
-      ExTypst.render_to_pdf(template,
-        reports: ExTypst.Format.table_content(table_content)
-      )
+    ExTypst.render_to_pdf(template,
+      reports: ExTypst.Format.table_content(table_content)
+    )
+  end
 
-    File.write(path, pdf_binary)
+  @spec report_to_pdf(id :: integer) :: {:ok, binary} | {:error, any}
+  def report_to_pdf(id) do
+    template = """
+    = Ausbildungsnachweis
+
+    Aktivität: <%= report.activity %>
+
+    Dauer: <%= report.duration %>
+    """
+
+    report = get_report!(id)
+
+    ExTypst.render_to_pdf(template, report: report)
   end
 
   @doc """
