@@ -1,5 +1,6 @@
 # Ausbildungsnachweis Digital
 ## Lehrjahre sind jetzt Herrenjahre!
+### Branch protection rule test
 
 To start your Phoenix server:
 
